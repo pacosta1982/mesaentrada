@@ -47,8 +47,8 @@
         <!-- info row -->
         <div class="row invoice-info">
           <div class="col-sm-6 invoice-col">
-                <strong>SAT:</strong>  {{$project->sat_id?$project->getSat->NucNomSat:""}}<br>
-                <strong>Cant. Postulantes:</strong>  {{$postulantes->count()}}<br>
+                <strong>SAT:</strong>  {{ $project->sat_id?$project->getSat->NucNomSat:"" }}<br>
+                <strong>Cant. Postulantes:</strong>  {{ $postulantes->count() }}<br>
                 <strong>Departamento: </strong>{{ $project->state_id?$project->getState->DptoNom:"" }}<br>
                 <strong>Distrito:</strong> {{ $project->city_id }}<br>
 
