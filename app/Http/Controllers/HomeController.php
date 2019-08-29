@@ -96,7 +96,7 @@ class HomeController extends Controller
             $reg->ExpDPerNom=utf8_decode($nombre);
             $reg->ExpDTel=$value->postulante_id?$value->getPostulante->mobile:"";
             $reg->ExpDNivel=ProjectHasPostulantes::getNivel($value->postulante_id);
-            $reg->ExpDFec= date_format($date, 'Y-d-m H:i:s');
+            $reg->ExpDFec= date_format($date, 'Y-m-d H:i:s');
             $reg->ExpDUsuCod=strtoupper(substr(Auth::user()->username, 0, 10));
             $reg->ExpDImpr='N';
             $reg->ExpDNro='0';
