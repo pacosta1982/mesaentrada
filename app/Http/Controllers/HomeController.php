@@ -86,8 +86,8 @@ class HomeController extends Controller
 
         foreach ($postulantes as $key => $value) {
             $nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
-            echo $nombre;
-            /*$nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
+            //echo $nombre;
+            $nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
             $reg = new SIG005L1();
             $reg->NroExp=$request->nro_expv;
             $reg->NroExpS='A';
@@ -100,11 +100,11 @@ class HomeController extends Controller
             $reg->ExpDUsuCod=strtoupper(substr(Auth::user()->username, 0, 10));
             $reg->ExpDImpr='N';
             $reg->ExpDNro='0';
-            $reg->save();*/
+            $reg->save();
 
         }
 
-       /* $asig = new ProjectHasExpedientes();
+        $asig = new ProjectHasExpedientes();
         $asig->project_id=$request->project_idv;
         $asig->exp=$request->nro_expv;
         $asig->save();
@@ -117,6 +117,6 @@ class HomeController extends Controller
         $exp = '';
         $pro = '';
         return view('home',compact('exp','pro'))->with('successMsgOK', 'Proyecto vinculado Correctamente!!');
-*/
+
     }
 }
