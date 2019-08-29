@@ -5,8 +5,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\SIG005;
-use App\models\SIG005L1;
+use App\Models\SIG005;
+use App\Models\SIG005L1;
 use App\Models\Project;
 use App\Models\ProjectHasPostulantes;
 use App\Models\ProjectHasExpedientes;
