@@ -85,7 +85,7 @@ class HomeController extends Controller
         $date=new \DateTime();
 
         foreach ($postulantes as $key => $value) {
-            $nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
+            //$nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
             //echo $nombre;
             $nombre = ($value->postulante_id?$value->getPostulante->first_name:"") .' '. ($value->postulante_id?$value->getPostulante->last_name:"");
             $reg = new SIG005L1();
@@ -93,7 +93,7 @@ class HomeController extends Controller
             $reg->NroExpS='A';
             $reg->ExpDId=$key+1;
             $reg->ExpDPerCod=$value->postulante_id?$value->getPostulante->cedula:"";
-            $reg->ExpDPerNom=$nombre;
+            $reg->ExpDPerNom=utf8_encode($nombre);
             $reg->ExpDTel=$value->postulante_id?$value->getPostulante->mobile:"";
             $reg->ExpDNivel=ProjectHasPostulantes::getNivel($value->postulante_id);
             $reg->ExpDFec= date_format($date, 'Y-d-m H:i:s');
