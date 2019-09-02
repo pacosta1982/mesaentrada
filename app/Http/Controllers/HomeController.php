@@ -37,6 +37,7 @@ class HomeController extends Controller
 
             $expediente = SIG005::where('NroExp',$request->input('nro_exp'))
             ->where('NroExpS','A')
+            ->where('NroExpFch','>=','2019-09-02')
             ->first();
 
             $project = Project::where('id',$request->input('project_id'))
@@ -49,7 +50,7 @@ class HomeController extends Controller
 
             if (!$expediente) {
                 //return redirect()->back()->with('error', 'Expediente no Existe!');
-                return view('home',compact('exp','pro'))->with('successMsg', 'Expediente no Existe!');
+                return view('home',compact('exp','pro'))->with('successMsg', 'Expediente no Existe o no es Valido!');
             }
 
             if (!$project) {
@@ -58,8 +59,6 @@ class HomeController extends Controller
             }
 
             $postulantes = ProjectHasPostulantes::where('project_id',$project->id)->get();
-
-
             $pre = SIG005L1::where('NroExp',$request->input('nro_exp'))->first();
             $proexp = ProjectHasExpedientes::where('project_id',$project->id)->first();
 
@@ -93,6 +92,7 @@ class HomeController extends Controller
             $reg->NroExpS='A';
             $reg->ExpDId=$key+1;
             $reg->ExpDPerCod=$value->postulante_id?$value->getPostulante->cedula:"";
+            //$reg->ExpDPerNom=$nombre;
             $reg->ExpDPerNom=utf8_decode($nombre);
             $reg->ExpDTel=$value->postulante_id?$value->getPostulante->mobile:"";
             $reg->ExpDNivel=ProjectHasPostulantes::getNivel($value->postulante_id);
