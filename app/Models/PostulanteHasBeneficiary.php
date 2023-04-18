@@ -12,7 +12,8 @@ class PostulanteHasBeneficiary extends Model
         return 'Y-d-m H:i:s.v';
     }
 
-    protected $connection = 'sqlsrv';
+    // protected $connection = 'sqlsrv';
+    protected $connection = 'pgsql1';
 
     public function getPostulante() {
         return $this->hasOne('App\Models\Postulante','id','miembro_id');
