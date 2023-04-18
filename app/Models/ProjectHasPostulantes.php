@@ -9,7 +9,8 @@ use App\Models\Postulante;
 class ProjectHasPostulantes extends Model
 {
     //
-    protected $connection = 'sqlsrv';
+    //protected $connection = 'sqlsrv';
+    protected $connection = 'pgsql1';
     public function getDateFormat()
     {
         return 'Y-d-m H:i:s.v';

@@ -78,6 +78,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'pgsql1' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL_UNO'),
+            'host' => env('DB_HOST_UNO', '127.0.0.1'),
+            'port' => env('DB_PORT_UNO', '5432'),
+            'database' => env('DB_DATABASE_UNO', 'forge'),
+            'username' => env('DB_USERNAME_UNO', 'forge'),
+            'password' => env('DB_PASSWORD_UNO', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST_SECOND', 'localhost'),

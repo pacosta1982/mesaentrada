@@ -12,7 +12,8 @@ class Postulante extends Model
         return 'Y-d-m H:i:s.v';
     }
 
-    protected $connection = 'sqlsrv';
+    //protected $connection = 'sqlsrv';
+    protected $connection = 'pgsql1';
 
     public $timestamps = false;
 

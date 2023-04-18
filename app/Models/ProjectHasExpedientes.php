@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectHasExpedientes extends Model
 {
     //
-    protected $connection = 'sqlsrv';
-    public function getDateFormat()
-    {
-        return 'Y-d-m H:i:s.v';
-    }
+    //protected $connection = 'sqlsrv';
+    protected $connection = 'pgsql1';
+    // public function getDateFormat()
+    // {
+    //     return 'Y-d-m H:i:s.v';
+    // }
 
     public function getExpediente() {
         return $this->hasOne('App\Models\SIG005','NroExp','exp');

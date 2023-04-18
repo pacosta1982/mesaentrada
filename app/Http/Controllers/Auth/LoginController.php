@@ -47,7 +47,7 @@ class LoginController extends Controller
         // [#14](https://github.com/jotaelesalinas/laravel-simple-ldap-auth/issues/14):
         // Adldap::auth()->bind($userdn, $password);
 
-        if(Adldap::auth()->attempt($username.'@senavitat', $password, $bindAsUser = true)) {
+        if(Adldap::auth()->attempt($username.'@muvh', $password, $bindAsUser = true)) {
             // the user exists in the LDAP server, with the provided password
 
             $user = \App\User::where($this->username(), $username)->first();

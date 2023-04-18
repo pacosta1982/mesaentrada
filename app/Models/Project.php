@@ -16,7 +16,9 @@ class Project extends Model
 
     public $timestamps = false;
 
-    protected $connection = 'sqlsrv';
+    //protected $connection = 'sqlsrv';
+
+    protected $connection = 'pgsql1';
 
     /*public function getDateFormat()
     {
