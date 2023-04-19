@@ -66,7 +66,7 @@
 
                 <div class="form-group has-feedback">
 
-                        <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required
+                        <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" oninput="this.value = this.value.toLowerCase()" required
                         placeholder="Usuario">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         @if ($errors->has('username'))
