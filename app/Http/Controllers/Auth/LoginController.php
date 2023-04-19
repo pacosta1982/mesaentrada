@@ -50,21 +50,37 @@ class LoginController extends Controller
         if(Adldap::auth()->attempt($username.'@muvh', $password, $bindAsUser = true)) {
             // the user exists in the LDAP server, with the provided password
 
-            $user = \App\User::where($this->username(), $username)->first();
+           $user = \App\User::where($this->username(), $username)->first();
+
+           $search = Adldap::search()->where('samaccountname', '=', $username)
+                                        ->select('displayname', 'userprincipalname')
+                                        // ->select('userprincipalname')
+                                        ->first();
+            //dd($search);
+            $nombre=$search->displayname[0];
+            $mail=$search->userprincipalname[0];
+            //var_dump($nombre);
+            //dd($mail);
+            //var_dump($mail);
+
+
             if (!$user) {
                 // the user doesn't exist in the local database, so we have to create one
 
                 $user = new \App\User();
                 $user->username = $username;
                 $user->password = '';
+                $user->name = $nombre;
+                $user->email = $mail;
 
                 // you can skip this if there are no extra attributes to read from the LDAP server
                 // or you can move it below this if(!$user) block if you want to keep the user always
                 // in sync with the LDAP server
+                //dd($username);
                 $sync_attrs = $this->retrieveSyncAttributes($username);
-                foreach ($sync_attrs as $field => $value) {
-                    $user->$field = $value !== null ? $value : '';
-                }
+                // foreach ($sync_attrs as $field => $value) {
+                //     $user->$field = $value !== null ? $value : '';
+                // }
             }
 
             // by logging the user we create the session, so there is no need to login again (in the configured time).
@@ -84,6 +100,7 @@ class LoginController extends Controller
         $ldapuser = Adldap::search()->where(env('LDAP_USER_ATTRIBUTE'), '=', $username)->first();
         if ( !$ldapuser ) {
             // log error
+            //dd($ldapuser = Adldap::search()->where(env('LDAP_USER_ATTRIBUTE'), '=', 'nmorel')->first());
             return false;
         }
         // if you want to see the list of available attributes in your specific LDAP server:
