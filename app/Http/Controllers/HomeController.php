@@ -46,7 +46,7 @@ class HomeController extends Controller
             //return $request;
             $expediente = SIG005::where('NroExp',$request->input('nro_exp'))
             ->where('NroExpS','A')
-            ->where('NroExpFch','>=','2019-09-02')
+            // ->where('NroExpFch','>=','2019-09-02')
             ->first();
 
             $project = Project::where('id',$request->input('project_id'))
